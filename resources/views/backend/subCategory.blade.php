@@ -55,9 +55,9 @@
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach ($subcategories as $subcategory)
+                            @foreach ($subcategories as $index=>$subcategory)
                                 <tr>
-                                    <th scope="row">{{ $subcategory->id }}</th>
+                                    <th scope="row">{{ $index+$subcategories->firstItem() }}</th>
                                     <td>{{ $subcategory->category_name }}</td>
                                     <td>{{ $subcategory->subcategory_name }}</td>
                                     <td>{{ $subcategory->created_at }}</td>
@@ -68,7 +68,7 @@
 
                         </tbody>
                     </table>
-
+                    {{ $subcategories->links() }}
 
                 </div>
 

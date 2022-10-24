@@ -17,7 +17,7 @@ class subCategory extends Controller
             ->join('categories','s_categories.category_id','=','categories.id')
             ->select('s_categories.*','categories.category_name')
             ->orderBy('id', 'asc')
-            ->get();
+            ->paginate(5);
         return view('backend.subCategory', compact('categories','subcategories'));
     }
 
@@ -45,13 +45,13 @@ class subCategory extends Controller
     }
 
     public function editSubcat($id){
-        $categories= Category::all();
-        $subcategories= DB::table('s_categories')
-            ->join('categories','s_categories.category_id','=','categories.id')
-            ->select('s_categories.*','categories.category_name')
-            ->orderBy('id', 'asc')
-            ->get();
-        // $data['subcategories'] = SCategory::where('id',$id)->get();
-        return view('backend.editSubCategory', compact('categories','subcategories'));
+        $category= Category::all();
+        $subcategory= SCategory::where('id',$id)->first();
+        return view('backend.editSubCategory', ['category'=>$category, 'subcategory'=>$subcategory]);
+    }
+
+    public function categoryDropDown($id){
+        $category= Category::all();
+        return request->json($category);
     }
 }

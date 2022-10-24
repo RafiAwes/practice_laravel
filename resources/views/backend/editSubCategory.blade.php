@@ -22,7 +22,7 @@
                             <label for="">Category</label>
                             <select name="category_id" id="category_id" class="form-control">
                                 <option value="">The default select will be here</option>
-                                @foreach ($subcategories as $subcat)
+                                @foreach ($subcategory as $subcat)
                                     <option value="{{ $subcat->category_id }}">{{ $subcat->category_name }}</option>
                                 @endforeach
                             </select>
@@ -41,13 +41,40 @@
                             <input type="submit" class="btn btn-info text-center rounded" value="Update Category">
                         </div>
                     </form>
-
                 </div>
             </div>
-
         </div>
     </div>
 </div>
+<script>
+    $(document).ready(function() {
+           $('#subcategory').on('change', function() {
+              var subCategory = $(this).val();
+              if(subCategory) {
+                  $.ajax({
+                      url: '/dropdown/'+subCategory,
+                      type: "GET",
+                      data : {"_token":"{{ csrf_token() }}"},
+                      dataType: "json",
+                      success:function(data)
+                      {
+                        if(data){
+                           $('#category').empty();
+                           $('#category').append('<option hidden>Choose Course</option>');
+                           $.each(data, function(key, category){
+                               $('select[name="category"]').append('<option value="'+ key +'">' + category.category_name+ '</option>');
+                           });
+                       }else{
+                           $('#category').empty();
+                       }
+                    }
+                  });
+              }else{
+                $('#category').empty();
+              }
+           });
+           });
+</script>
 
 
 @endsection

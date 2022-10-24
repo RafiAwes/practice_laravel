@@ -33,4 +33,5 @@ Route::get('/sub-category/', 'subCategory@subCategoryPage');
 Route::post('/insert/sub/category/', 'subCategory@insertSubCategory');
 Route::get('/delete/sub-category/{id}','subCategory@deleteSubcat');
 Route::get('/edit/sub-category/{id}','subCategory@editSubcat');
+Route::get('/dropdown/{id}','subCategory@categoryDropDown');
 
