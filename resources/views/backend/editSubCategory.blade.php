@@ -16,14 +16,14 @@
                         @csrf
                         <div class="form-group">
                             {{-- hidden part --}}
-                            <input type="hidden" name="category_id" value="">
+                            <input type="hidden" name="subcategory_id" value="{{$subcategory->id}}">
 
                             {{-- category part --}}
                             <label for="">Category</label>
                             <select name="category_id" id="category_id" class="form-control">
                                 <option value="">The default select will be here</option>
-                                @foreach ($subcategory as $subcat)
-                                    <option value="{{ $subcat->category_id }}">{{ $subcat->category_name }}</option>
+                                @foreach ($category as $cat)
+                                    <option value="{{ $cat->id }}" @if ($subcategory-> category_id == $cat->id) selected @endif>{{ $cat->category_name }}</option>
                                 @endforeach
                             </select>
 
@@ -31,14 +31,14 @@
 
                             {{-- subcategory part --}}
                             <label>Sub Category</label>
-                            <input type="text" name="sub_category_name" class="form-control rounded @error('sub_category_name') is-invalid @enderror" id="sub_category_name" value=""
+                            <input type="text" name="subcategory_name" class="form-control rounded @error('subcategory_name') is-invalid @enderror" id="subcategory_name" value="{{ $subcategory->subcategory_name }}"
                                 required placeholder="Insert Sub Category name">
-                                @error('sub_category_name')
+                                @error('subcategory_name')
                                     <div class="alert alert-danger">{{ $message }}</div>
                                 @enderror
                         </div>
                         <div class="form-group text-center">
-                            <input type="submit" class="btn btn-info text-center rounded" value="Update Category">
+                            <input type="submit" class="btn btn-info text-center rounded" value="Update">
                         </div>
                     </form>
                 </div>

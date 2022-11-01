@@ -51,13 +51,12 @@
 				<ul id="side-main-menu" class="side-menu list-unstyled">
 					<li><a href="/category/"> <i class="icon-home"></i>category </a></li>
 					<li><a href="/sub-category/"> <i class="icon-form"></i>Subcategory </a></li>
-					<li><a href="charts.html"> <i class="fa fa-bar-chart"></i>Charts </a></li>
-					<li><a href="tables.html"> <i class="icon-grid"></i>Tables </a></li>
-					<li><a href="#exampledropdownDropdown" aria-expanded="false" data-toggle="collapse"> <i class="icon-interface-windows"></i>Example dropdown </a>
-						<ul id="exampledropdownDropdown" class="collapse list-unstyled ">
-							<li><a href="#">Page</a></li>
-							<li><a href="#">Page</a></li>
-							<li><a href="#">Page</a></li>
+					{{-- <li><a href="charts.html"> <i class="fa fa-bar-chart"></i>Charts </a></li>
+					<li><a href="tables.html"> <i class="icon-grid"></i>Tables </a></li> --}}
+					<li><a href="#exampledropdownDropdown" aria-expanded="false" data-toggle="collapse"> <i class="icon-interface-windows"></i> Product </a>
+						<ul id="exampledropdownDropdown" class="collapse list-unstyled">
+							<li><a href="/add/product/">Add Product</a></li>
+							<li><a href="#">View Product</a></li>
 						</ul>
 					</li>
 					<li><a href="login.html"> <i class="icon-interface-windows"></i>Login page </a></li>
@@ -139,8 +138,10 @@
 	<!-- Main File-->
 	<script src="{{ url('/') }}/backend_assets/js/front.js"></script>
 	<script src="https://kit.fontawesome.com/c218529370.js"></script>
-    <!-- Toastr-->
 
+    @yield('footer_js')
+
+    <!-- Toastr-->
     <script src="http://cdn.bootcss.com/toastr.js/latest/js/toastr.min.js"></script>
     {!! Toastr::message() !!}
 </body>

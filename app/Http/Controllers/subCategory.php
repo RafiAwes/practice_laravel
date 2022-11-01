@@ -54,4 +54,17 @@ class subCategory extends Controller
         $category= Category::all();
         return request->json($category);
     }
+
+    public function updateCategory(Request $request){
+        
+        $validatedData = $request->validate([
+            'subcategory_name' => 'required|min:3',
+        ]);
+        SCategory::where('id',$request->subcategory_id)->update([
+            'category_id' => $request->category_id,
+            'subcategory_name' => $request->subcategory_name,
+        ]);
+        Toastr::success('Data Updated','Updated',["positionClass" => "toast-top-right"]);
+        return redirect('/sub-category/');
+    }
 }
