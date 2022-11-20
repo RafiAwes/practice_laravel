@@ -56,7 +56,7 @@
 					<li><a href="#exampledropdownDropdown" aria-expanded="false" data-toggle="collapse"> <i class="icon-interface-windows"></i> Product </a>
 						<ul id="exampledropdownDropdown" class="collapse list-unstyled">
 							<li><a href="/add/product/">Add Product</a></li>
-							<li><a href="#">View Product</a></li>
+							<li><a href="/view/product/page/">View Product</a></li>
 						</ul>
 					</li>
 					<li><a href="login.html"> <i class="icon-interface-windows"></i>Login page </a></li>

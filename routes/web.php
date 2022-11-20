@@ -38,4 +38,6 @@ Route::post('/update/category/','subcategory@updateCategory');
 
 //Product
 Route::get('/add/product/','productcontroller@addProdPage');
-Route::post('add/product/','productcontroller@uploadProductQuery');
+Route::post('add/product/','productcontroller@addNewProduct');
+Route::get('/view/product/page/','productcontroller@viewProduct');
+Route::get('/delete/product/{id}','productcontroller@deleteProduct');
