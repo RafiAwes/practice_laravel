@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Brian2694\Toastr\Facades\Toastr;
+use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 use App\SCategory;
@@ -71,9 +72,13 @@ class productcontroller extends Controller
         return view('backend.product.productlist', compact('products'));
     }
 
-    public function deleteProduct(){
+    public function deleteProduct($id){
 
-        
+        $img = product::findOrFail($id);
+        unlink($img->image);
+        product::where('id',$id)
+        ->delete();
+        return back();
 
     }
 }
