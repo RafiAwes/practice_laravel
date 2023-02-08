@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Brian2694\Toastr\Facades\Toastr;
 use Illuminate\Http\Request;
 use carbon\carbon;
+use App\product;
 use App\Category;
 
 class categoryController extends Controller
@@ -37,9 +38,16 @@ class categoryController extends Controller
  }
 
  public function deleteCategory($id) {
-     Category::where('id',$id)->delete();
-     Toastr::success('Category deleted', 'Deleted',["positionClass" => "toast-top-right"]);
-     return back();
+    if(product::where('category_id',$id)->exists()){
+        Toastr::warning('There is a product under this category. It can not be deleted', 'Notice',["positionClass" => "toast-top-right"]);
+        return back();
+    }
+    else{
+        Category::where('id',$id)->delete();
+        Toastr::success('Category deleted', 'Deleted',["positionClass" => "toast-top-right"]);
+        return back();
+    }
+
  }
 
  public function editCategories($id){

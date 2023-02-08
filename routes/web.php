@@ -13,9 +13,11 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+// Route::get('/', function () {
+//     return view('welcome');
+// });
+
+Route::get('/', 'frontendController@index');
 
 Auth::routes();
 
@@ -41,3 +43,8 @@ Route::get('/add/product/','productcontroller@addProdPage');
 Route::post('add/product/','productcontroller@addNewProduct');
 Route::get('/view/product/page/','productcontroller@viewProduct');
 Route::get('/delete/product/{id}','productcontroller@deleteProduct');
+Route::get('/edit/product/{id}', 'productcontroller@editProduct');
+Route::post('update/product/','productcontroller@updateProduct');
+
+//front end
+Route::get('/product/details','frontendController@ProductDetails');

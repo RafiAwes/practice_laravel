@@ -81,4 +81,66 @@ class productcontroller extends Controller
         return back();
 
     }
+
+    public function editProduct($id){
+
+        $categories = Category::all();
+        $subcategories = SCategory::all();
+        $product = product::where('id', $id)->first();
+
+        return view('backend.product.editProductpage', compact('product','categories','subcategories'));
+    }
+
+    public function updateProduct(Request $request){
+        if($request->hasFile('image')){
+
+            //removing current image
+            $product_info = product::where('id', $request->product_id)->first();
+            if($product_info->image != null){
+                unlink($product_info->image);
+            }
+            //image processing
+            $get_image = $request->file('image');
+            $image_name = time().'.'. $get_image->getClientOriginalExtension();
+            Image::make($get_image)->save('product_image/'.$image_name,100);
+
+            //slug
+            $without_space = str_replace(' ','-',$request->name);
+            $without_slashAndSpace = str_replace('/','-',$without_space);
+            $slug = str_replace('.','-',$without_slashAndSpace);
+
+            //update product
+            product::where('id', $request->product_id)->update([
+                'category_id' => $request->category_id,
+                'subcategory_id' => $request->subcategory_id,
+                'name' => $request->name,
+                'image' => 'product_image/'.$image_name,
+                'description' => $request->description,
+                'price' => $request->price,
+                'stock' => $request->stock,
+                'slug' => $slug,
+                'updated_at' => carbon::now(),
+            ]);
+        }
+        else{
+            //slug
+            $without_space = str_replace(' ','-',$request->name);
+            $without_slashAndSpace = str_replace('/','-',$without_space);
+            $slug = str_replace('.','-',$without_slashAndSpace);
+
+            //update product
+            product::where('id', $request->product_id)->update([
+                'category_id' => $request->category_id,
+                'subcategory_id' => $request->subcategory_id,
+                'name' => $request->name,
+                'image' => 'product_image/'.$image_name,
+                'description' => $request->description,
+                'price' => $request->price,
+                'stock' => $request->stock,
+                'slug' => $slug,
+                'updated_at' => carbon::now(),
+            ]);
+        }
+        return redirect('/view/product/page/');
+    }
 }

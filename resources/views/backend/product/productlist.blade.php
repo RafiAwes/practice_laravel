@@ -40,7 +40,7 @@
                                     </td>
                                     <td>{{ $product->price }}</td>
                                     <td>{{ $product->stock }}</td>
-                                    <td><a href="" class="btn btn-warning btn-sm rounded">Edit</a></td>
+                                    <td><a href="{{ url('/edit/product') }}/{{ $product->id }}" class="btn btn-warning btn-sm rounded">Edit</a></td>
                                     <td><a href="{{ url('/delete/product') }}/{{ $product->id }}" class="btn btn-danger btn-sm rounded">Delete</a></td>
 
                                 </tr>
