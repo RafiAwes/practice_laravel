@@ -23,14 +23,14 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
-// Category
+//Category
 Route::get('/category/', 'categoryController@categorypage');
 Route::post('/insert/category/', 'categoryController@addCategories');
 Route::get('/delete/category/{id}', 'categoryController@deleteCategory');
 Route::get('/edit/category/{id}', 'categoryController@editCategories');
 Route::post('/update/category/','categoryController@updateCategory');
 
-// subactegory
+//subactegory
 Route::get('/sub-category/', 'subCategory@subCategoryPage');
 Route::post('/insert/sub/category/', 'subCategory@insertSubCategory');
 Route::get('/delete/sub-category/{id}','subCategory@deleteSubcat');
@@ -48,3 +48,6 @@ Route::post('update/product/','productcontroller@updateProduct');
 
 //front end
 Route::get('/product/details','frontendController@ProductDetails');
+//cart
+Route::post('/add/to/cart','cartController@addToCart');
+Route::get('cart/product/delete/{id}','cartController@deleteItem');

@@ -162,6 +162,7 @@ return [
         Illuminate\Validation\ValidationServiceProvider::class,
         Illuminate\View\ViewServiceProvider::class,
         Intervention\Image\ImageServiceProvider::class,
+        
 
 
         /*
@@ -232,7 +233,7 @@ return [
         'View' => Illuminate\Support\Facades\View::class,
         'Toastr'  => Brian2694\Toastr\Facades\Toastr::class,
         'Image' => Intervention\Image\Facades\Image::class,
-        
+
 
     ],
 

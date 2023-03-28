@@ -21,9 +21,13 @@
     <!-- Main Style CSS -->
     <link rel="stylesheet" href="{{url('/')}}/frontend_assets/assets/css/style.css">
 
+    <!-- Toastr-->
+    <link rel="stylesheet" href="http://cdn.bootcss.com/toastr.js/latest/css/toastr.min.css">
+
+
 </head>
 
-<body>
+
 
     <!--header area start-->
 
@@ -284,48 +288,48 @@
                                         <a href="wishlist.html"><i class="fa fa-heart-o" aria-hidden="true"></i></a>
                                         <span class="wishlist_quantity">3</span>
                                     </div>
+                                    @php
+                                        $amount = 0;
+                                        foreach ($carts as $item) {
+                                            $amount = $amount+($item->qty*$item->price);
+                                        }
+                                    @endphp
                                     <div class="mini_cart_wrapper">
-                                        <a href="javascript:void(0)"><i class="fa fa-shopping-bag" aria-hidden="true"></i>$147.00 <i class="fa fa-angle-down"></i></a>
-                                        <span class="cart_quantity">2</span>
+                                        <a href="javascript:void(0)"><i class="fa fa-shopping-bag" aria-hidden="true"></i>{{ $amount }} Tk<i class="fa fa-angle-down"></i></a>
+                                        <span class="cart_quantity">{{ $count_cart_products }}</span>
                                         <!--mini cart-->
-                                         <div class="mini_cart">
+                                        <div class="mini_cart">
+                                            @foreach ($carts as $item )
                                             <div class="cart_item">
-                                               <div class="cart_img">
-                                                   <a href="#"><img src="{{url('/')}}/frontend_assets/assets/img/s-product/product.jpg" alt=""></a>
-                                               </div>
+                                                <div class="cart_img">
+                                                    <a href="#"><img src="{{url($item->product_image)}}" alt=""></a>
+                                                </div>
                                                 <div class="cart_info">
-                                                    <a href="#">Sit voluptatem rhoncus sem lectus</a>
-                                                    <p>Qty: 1 X <span> $60.00 </span></p>
+                                                    <a href="#">{{$item->product_name}}</a>
+                                                    <p>Qty: {{ $item->qty }} X<span> {{ $item->price }} </span></p>
                                                 </div>
                                                 <div class="cart_remove">
-                                                    <a href="#"><i class="ion-android-close"></i></a>
+                                                    <a href="{{ url('cart/product/delete') }}/{{ $item->id }}"><i class="ion-android-close"></i></a>
                                                 </div>
                                             </div>
-                                            <div class="cart_item">
-                                               <div class="cart_img">
-                                                   <a href="#"><img src="{{url('/')}}/frontend_assets/assets/img/s-product/product2.jpg" alt=""></a>
-                                               </div>
-                                                <div class="cart_info">
-                                                    <a href="#">Natus erro at congue massa commodo</a>
-                                                    <p>Qty: 1 X <span> $60.00 </span></p>
-                                                </div>
-                                                <div class="cart_remove">
-                                                    <a href="#"><i class="ion-android-close"></i></a>
-                                                </div>
-                                            </div>
+                                            @endforeach
+                                            <h1>{{ $carts->count() }}</h1>
+
+
+
                                             <div class="mini_cart_table">
                                                 <div class="cart_total">
                                                     <span>Sub total:</span>
-                                                    <span class="price">$138.00</span>
+                                                    <span class="price">Tk. {{ $amount }}</span>
                                                 </div>
                                                 <div class="cart_total mt-10">
                                                     <span>total:</span>
-                                                    <span class="price">$138.00</span>
+                                                    <span class="price">{{ $amount }} Taka</span>
                                                 </div>
                                             </div>
 
                                             <div class="mini_cart_footer">
-                                               <div class="cart_button">
+                                                <div class="cart_button">
                                                     <a href="cart.html">View cart</a>
                                                 </div>
                                                 <div class="cart_button">
@@ -981,6 +985,11 @@
 
 <!-- Main JS -->
 <script src="{{url('/')}}/frontend_assets/assets/js/main.js"></script>
+
+<!-- Toastr-->
+<script src="http://cdn.bootcss.com/toastr.js/latest/js/toastr.min.js"></script>
+{!! Toastr::message() !!}
+
 
 
 

@@ -1,19 +1,19 @@
 /*-----------------------------------------------------------------------------------
 
-    
+
     CSS INDEX
     =========================================
     01. header css here
     02. slider area css here
     03. product section css here
-    04. banner section css here 
+    04. banner section css here
     05. blog area css here
     06. newsletter area css here
     07. footer area css here
     08. shop page css here
-    09. error page css heer 
+    09. error page css heer
     10. about page css here
-    11. blog page css here 
+    11. blog page css here
     12. blog details css here
     13. cart page css here
     14. checkout page css here
@@ -28,8 +28,8 @@
     23. newsletter popup css here
     24. modal css here
     25. compare css here
-    
-    
+
+
 
 -----------------------------------------------------------------------------------*/
 @import url("https://fonts.googleapis.com/css?family=Rubik:300,300i,400,400i,500,500i,700,700i,900,900i");
@@ -150,7 +150,7 @@ figure {
   margin: 0;
 }
 
-/*-- 
+/*--
     - Common Classes
 -----------------------------------------*/
 .fix {
@@ -189,7 +189,7 @@ figure {
   margin: 0;
 }
 
-/*-- 
+/*--
     - Background color
 -----------------------------------------*/
 .bg-white {
@@ -235,10 +235,10 @@ figure {
   height: 100%;
 }
 
-/*-- 
+/*--
     - color
 -----------------------------------------*/
-/*-- 
+/*--
     - Input Placeholder
 -----------------------------------------*/
 input:-moz-placeholder, textarea:-moz-placeholder {
@@ -261,8 +261,8 @@ input:-ms-input-placeholder, textarea:-ms-input-placeholder {
   -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=100)";
 }
 
-/*-- 
-    Scroll Up 
+/*--
+    Scroll Up
 -----------------------------------------*/
 #scrollUp {
   background: #0063d1 none repeat scroll 0 0;
@@ -290,7 +290,7 @@ input:-ms-input-placeholder, textarea:-ms-input-placeholder {
   animation-iteration-count: infinite;
 }
 
-/*-- 
+/*--
     - Main Wrapper
 -----------------------------------------*/
 .main-wrapper.header-transparent {
@@ -298,7 +298,7 @@ input:-ms-input-placeholder, textarea:-ms-input-placeholder {
   margin: 0 !important;
 }
 
-/*-- 
+/*--
     - Section Padding
 -------------------------------------*/
 .section-ptb {
@@ -2949,7 +2949,7 @@ input:-ms-input-placeholder, textarea:-ms-input-placeholder {
   text-align: center;
   transition: all 0.5s ease;
 }
-.add_to_cart a {
+.add_to_cart .buton{
   line-height: 16px;
   text-align: center;
   font-size: 12px;
@@ -2962,11 +2962,13 @@ input:-ms-input-placeholder, textarea:-ms-input-placeholder {
   color: #ffffff;
   border-radius: 5px;
 }
-.add_to_cart a:hover {
+.add_to_cart .buton:hover {
+  color: #ffffff;
   background: #1953b4;
+  
 }
 @media only screen and (max-width: 767px) {
-  .add_to_cart a {
+  .add_to_cart .buton {
     font-size: 12px;
     padding: 10px 30px;
     line-height: 15px;

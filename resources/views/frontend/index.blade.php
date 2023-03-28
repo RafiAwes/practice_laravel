@@ -134,7 +134,7 @@
     <!--banner area end-->
 
     <!--product area start-->
-    <section class="product_area mb-46">
+    {{-- <section class="product_area mb-46">
         <div class="container">
             <div class="row">
                 <div class="col-12">
@@ -363,7 +363,7 @@
                 </article>
             </div>
         </div>
-    </section>
+    </section> --}}
     <!--product area end-->
 
     <!--banner area start-->
@@ -492,29 +492,38 @@
                 </div>
             </div>
             <div class="row featured_container featured_column3">
+                @foreach ($products as $product)
                 <div class="col-lg-4">
                     <article class="single_product">
                         <figure>
                             <div class="product_thumb">
-                                <a class="primary_img" href="product-details.html"><img src="{{url('/')}}/frontend_assets/assets/img/product/product13.jpg" alt=""></a>
+                                <a class="primary_img" href="product-details.html"><img src="{{url($product->image)}}" alt=""></a>
                                 <a class="secondary_img" href="product-details.html"><img src="{{url('/')}}/frontend_assets/assets/img/product/product14.jpg" alt=""></a>
                                 <div class="label_product">
                                     <span class="label_sale">sale</span>
                                 </div>
                             </div>
                             <figcaption class="product_content">
-                            <div class="price_box">
-                                    <span class="current_price">$79.00</span>
-                                </div>
-                                <h3 class="product_name"><a href="product-details.html">Pellentesque posuere hendrerit dui</a></h3>
-                                <div class="add_to_cart">
-                                    <a href="cart.html" title="add to cart">Add to cart</a>
-                                </div>
+                                <form action="{{ url('add/to/cart') }}" method="POST" enctype="multipart/form">
+                                    @csrf
+                                    <input type="hidden" name="product_id" value="{{ $product->id }}">
+                                    <input type="hidden" name="qty" value="1">
+                                    <div class="price_box" name="price" value="1">
+                                        <span class="current_price">{{$product->price}}</span>
+                                    </div>
+                                    <h3 class="product_name"><a href="product-details.html">{{$product->name}}</a></h3>
+                                    <div class="add_to_cart">
+                                        <button type="submit" class="buton">Add to cart</button>
+                                        {{-- <a href="cart.html" title="add to cart">Add to cart</a> --}}
+                                    </div>
+                                </form>
                             </figcaption>
                         </figure>
                     </article>
                 </div>
-                <div class="col-lg-4">
+                @endforeach
+
+                {{-- <div class="col-lg-4">
                     <article class="single_product">
                         <figure>
                             <div class="product_thumb">
@@ -661,7 +670,7 @@
                             </figcaption>
                         </figure>
                     </article>
-                </div>
+                </div> --}}
             </div>
         </div>
     </section>
